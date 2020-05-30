@@ -7,6 +7,7 @@ start:
     w:
     u:
     d:
+  items:
   description: |
     Your first thought was, he lied in every word.
     
@@ -34,6 +35,7 @@ restaurant:
     e:
     u:
     d:
+  items: food
   description: |
     You're in the restaurant now. It's a fun-Looking
     restaurant with the usual restaurant type of stuff.
