@@ -1,13 +1,5 @@
-start:
-  exits: n s e w
-  adjacent_rooms:
-    n:
-    s: restaurant
-    e:
-    w:
-    u:
-    d:
-  items:
+town_square:
+  adjacent_rooms: home town_gates
   description: |
     Your first thought was, he lied in every word.
     
@@ -26,16 +18,39 @@ start:
     the boredom … the end maybe? You need something to do, 
     somewhere to go, someone to be.
 
-restaurant:
-  exits: n
-  adjacent_rooms:
-    n: start
-    s:
-    w:
-    e:
-    u:
-    d:
-  items: food
+    Should you follow his gaze and head out towards the town
+    gates on your quest? Or, maybe it's better to simply go home?
+
+town_gates:
+  adjacent_rooms: path_to_dark_tower
   description: |
-    You're in the restaurant now. It's a fun-Looking
-    restaurant with the usual restaurant type of stuff.
+    It's a dreary day, as you set out onto the path the old
+    man pointed to. The setting sun's light is just enough
+    for you to catch a sight of a wandering cat in the distance.
+    
+    Your mind's made up. There's no going back! As ominous
+    as the cat creature crossing your path may seem, you must
+    go on.
+
+path_to_dark_tower:
+  adjacent_rooms: town_gates desolate_path_to_dark_tower
+  description: |
+    You walk farther along the path for a while, until you
+    stop and look back at the road you had followed. The
+    road is no longer there, planting a seed of doubt within you.
+    You look around and see nothing but grey plains all around you. 
+
+
+desolate_path_to_dark_tower:
+  adjacent_rooms: path_to_dark_tower gradual_path_to_dark_tower
+  description: |
+    You decide to head onwards. It is difficult to remember
+    which direction you are headed in, yet you hold together,
+    for now. You have never seen such desolation before, for
+    you see no plants, no life, not even bugs. Even a small
+    patch of grass would have been a mercy. Yet there was none
+    to be had.
+     
+
+
+
