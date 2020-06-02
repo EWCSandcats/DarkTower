@@ -3,54 +3,44 @@ town_square:
   description: |
     Your first thought was, he lied in every word.
     
-    The old man’s malicious eyes stare at you as if he’s 
-    bursting inside at the thought of gaining a new victim. 
-    He tells a story about a hidden tower, a dark tower, 
-    that holds unimaginable power and must be stopped. 
-    Yada yada, he goes on and on about an evil being, 
-    monsters, a quest, and so on.
+    The old man’s malicious eyes stare at you as if he’s bursting inside at the thought of gaining a new victim. He tells a story about a hidden tower, a dark tower, that holds unimaginable power and must be stopped. Yada yada, he goes on and on about an evil being, monsters, many knights have died trying, a quest, and so on.
 
-    Looking at the sun, you notice it’s getting late, so
-    you agree to go the direction he points, grudgingly, 
-    but also secretly basking in the grandiose thoughts 
-    of high adventure and fame. Mostly, though, you agree 
-    because you’re bored and you’re hoping for an end to 
-    the boredom … the end maybe? You need something to do, 
-    somewhere to go, someone to be.
+    Looking at the sun, you notice it’s getting late, so you agree to go the direction he points, grudgingly, but also secretly basking in the grandiose thoughts of high adventure and fame. Mostly, though, you agree because you’re bored and you’re hoping for an end to the boredom … THE end maybe? This will probably end withyour death. You need something to do, somewhere to go, someone to be.
 
-    Should you follow his gaze and head out towards the town
-    gates on your quest? Or, maybe it's better to simply go home?
+    Should you follow his gaze and head out towards the town gates on your quest? Or, maybe it's better to simply go home?
 
 town_gates:
-  adjacent_rooms: path_to_dark_tower
+  adjacent_rooms: continue_on_the_path cat_cafe
   description: |
-    It's a dreary day, as you set out onto the path the old
-    man pointed to. The setting sun's light is just enough
-    for you to catch a sight of a wandering cat in the distance.
+    It's a dreary day, as you set out onto the path the old man pointed to. The setting sun's light is just enough for you to catch a sight of a wandering cat in the distance.
     
-    Your mind's made up. There's no going back! As ominous
-    as the cat creature crossing your path may seem, you must
-    go on.
+    Your mind's made up. There's no going back! As ominous as the cat creature crossing your path may seem, you must go on.
 
-path_to_dark_tower:
-  adjacent_rooms: town_gates desolate_path_to_dark_tower
+cat_cafe:
+  adjacent_rooms: town_gates
   description: |
-    You walk farther along the path for a while, until you
-    stop and look back at the road you had followed. The
-    road is no longer there, planting a seed of doubt within you.
-    You look around and see nothing but grey plains all around you. 
+    Lots of cats! Everywhere. On tables, chairs, cat trees, and all over the floor. You hang out with some of the cats, petting and stroking them.
 
-
-desolate_path_to_dark_tower:
-  adjacent_rooms: path_to_dark_tower gradual_path_to_dark_tower
+continue_on_the_path:
+  adjacent_rooms: desolate_path crushed_plants
   description: |
-    You decide to head onwards. It is difficult to remember
-    which direction you are headed in, yet you hold together,
-    for now. You have never seen such desolation before, for
-    you see no plants, no life, not even bugs. Even a small
-    patch of grass would have been a mercy. Yet there was none
-    to be had.
+    You walk farther along the path for a while, until you stop and look back at the road you had followed. The road is no longer there, planting a seed of doubt within you. You look around and see nothing but grey plains all around you. 
+
+crushed_plants:
+  adjacent_rooms: continue_on_the_path
+  description: |
+    You see some plants that looked a bit smushed, as if something large had trampled them. Upon closer examination, they seem very roughed up and it look as if something had smashed them with malicious intent.
+    
+
+desolate_path:
+  adjacent_rooms: further_on_the_path other_room
+  description: |
+    You decide to head onwards. It is difficult to remember which direction you are headed in, yet you hold together, for now. You have never seen such desolation before, for you see no plants, other than the smushed ones earlier, no life, not even bugs. Even a small patch of green living grass would have been a mercy. Yet there was none to be had.
      
-
+further_on_the_path:
+  adjacent_rooms: placeholder_room new_room
+  description: |
+   You head farther down the non-existant road, and come across another patch of broken thistles. Within them, you spy an injured and bloodied horse. The grotesque creature stands up, allowing you to see its rust red mane, and almost skeletal frame. You wonder what it has done to deserve such pain.
+    
 
 

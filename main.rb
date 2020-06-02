@@ -21,6 +21,27 @@ module Utilities
       array.first.to_s
     end
   end
+
+  def format_for_screen(message)
+    # given a message, break it up into lines of no more than 70 characters
+    #message = "It's a dreary day, as you set out onto the path the old man pointed to. The setting sun's light is just enough for you to catch a sight of a wandering cat in the distance."
+
+    # TODO: Need to preserve paragraph structure
+
+    array = message.split
+    result = []
+    temp_result = []
+
+    loop do
+      if temp_result.join(' ').size <= 55 && !array.empty?
+        temp_result << array.shift
+        next
+      end
+      result << temp_result
+      temp_result = []
+      return result if array.empty?
+    end
+  end
 end
 
 class Room
@@ -98,8 +119,11 @@ class MainGame
     loop do
       clear_screen
       puts "Room: #{current_room.name.split('_').map(&:capitalize).join(' ')}\n\n"
-      puts current_room.description
-      puts "\nAvailable actions: #{current_room.adjacent_rooms.join(' | ')}"
+      puts format_for_screen(current_room.description).map { |section| section.join(' ')}
+      room_list = current_room.adjacent_rooms.map do |room|
+        "\"#{room}\""
+      end
+      puts "\nAvailable actions: #{room_list.join(' | ')}"
       direction = player.retrieve_move(current_room.adjacent_rooms)
       set_current_room(direction)
     end
