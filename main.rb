@@ -28,13 +28,15 @@ module Utilities
       line_array = line.split
       result = []
 
-      line_array.each do |word|
+      loop do
         if temp_result.join(' ').size <= 55 && !line_array.empty?
-          temp_result << word
+          temp_result << line_array.shift
           next
         end
+
         result << temp_result
         temp_result = []
+        break if line_array.empty?
       end
 
       result.map { |section| section.join(' ') }
@@ -117,7 +119,7 @@ class MainGame
     loop do
       clear_screen
       puts "Room: #{current_room.name.split('_').map(&:capitalize).join(' ')}\n\n"
-      puts format_for_screen(current_room.description).map { |line| line.empty? ? "\n" : line }
+      puts format_for_screen(current_room.description)#.map { |line| line.empty? ? "\n" : line }
       room_list = current_room.adjacent_rooms.map do |room|
         "\"#{room}\""
       end

@@ -5,7 +5,7 @@ town_square:
     
     The old man’s malicious eyes stare at you as if he’s bursting inside at the thought of gaining a new victim. He tells a story about a hidden tower, a dark tower, that holds unimaginable power and must be stopped. Yada yada, he goes on and on about an evil being, monsters, many knights have died trying, a quest, and so on.
 
-    Looking at the sun, you notice it’s getting late, so you agree to go the direction he points, grudgingly, but also secretly basking in the grandiose thoughts of high adventure and fame. Mostly, though, you agree because you’re bored and you’re hoping for an end to the boredom … THE end maybe? This will probably end withyour death. You need something to do, somewhere to go, someone to be.
+    Looking at the sun, you notice it’s getting late, so you agree to go the direction he points, grudgingly, but also secretly basking in the grandiose thoughts of high adventure and fame. Mostly, though, you agree because you’re bored and you’re hoping for an end to the boredom … THE end maybe? This will probably end with your death. You need something to do, somewhere to go, someone to be.
 
     Should you follow his gaze and head out towards the town gates on your quest? Or, maybe it's better to simply go home?
 
@@ -30,17 +30,53 @@ crushed_plants:
   adjacent_rooms: continue_on_the_path
   description: |
     You see some plants that looked a bit smushed, as if something large had trampled them. Upon closer examination, they seem very roughed up and it look as if something had smashed them with malicious intent.
-    
 
 desolate_path:
-  adjacent_rooms: further_on_the_path other_room
+  adjacent_rooms: further_on_the_path dead_tree
   description: |
     You decide to head onwards. It is difficult to remember which direction you are headed in, yet you hold together, for now. You have never seen such desolation before, for you see no plants, other than the smushed ones earlier, no life, not even bugs. Even a small patch of green living grass would have been a mercy. Yet there was none to be had.
-     
-further_on_the_path:
-  adjacent_rooms: placeholder_room new_room
+
+dead_tree:
+  adjacent_rooms: desolate_path
   description: |
-   You head farther down the non-existant road, and come across another patch of broken thistles. Within them, you spy an injured and bloodied horse. The grotesque creature stands up, allowing you to see its rust red mane, and almost skeletal frame. You wonder what it has done to deserve such pain.
+    You catch a sight of a black and withered tree as you are walking. It stands there almost mockingly, as if saying, "See, or shut your eyes." You wonder what it would take to make this wasteland green and healthy again.
+
+further_on_the_path:
+  adjacent_rooms: reflection small_river
+  description: |
+    You head farther down the non-existant road, and come across another patch of broken thistles. Within them, you spy an injured and bloodied horse. The grotesque creature stands up, allowing you to see its rust red mane, and almost skeletal frame. You wonder what it has done to deserve such pain.
+
+small_river:
+  adjacent_rooms: stand_and_fight
+  description: |
+    A small river flows across your path. Aluminum cans, old leather boots, and bicycle tires litter the river's banks.
     
+    Out of the river jumps a large fish. At first, it appears to be jumping for its own pleasure. But soon, you realize that its jumping towards you ... quickly.
 
+stand_and_fight:
+  adjacent_rooms: call_for_help continue_fight
+  description: |
+    As the fish gets closer, you see its immense jaws and sharp teeth. Is it a fish? It could be some type of shark. You ready your weapon and shield, bracing yourself for the impact with the fish.
 
+    Out of the corner of your eye, you notice someone else walking on another path.
+
+continue_fight:
+  adjacent_rooms: reflection
+  description: |
+    The fish takes a last jump before bearing down on you. It's going for your face. You swing your weapon and miss the fish. The collision knocks you down with some serious cuts on your head and neck. The fish flops around on the ground next to you.
+
+    Instead of killing the fish with your weapon, you push the fish back into the water with your hands, hoping it will just go away.
+
+call_for_help:
+  adjacent_rooms: small_river
+  description: |
+    Turning to look at the person on the other path, you yell for help. "Help," you yell, "this fish is attacking me!" The person on the other path seems noticeably jarred by your intrusion. They cup their hand to their ear as if to signal that they can't hear you.
+
+    Just then, you feel pain in your cheek and neck as the fish bites into your flesh. Tumbling to the ground from the impact, you swing your weapon and slice the fish in half. Both pieces writhe a little before coming to rest peacefully.
+
+    The person on the other path is gone.
+
+reflection:
+  adjacent_rooms: onward
+  description: |
+    You attempt to look inward, instead of outward at the repulsive landscape. You recall someone from your childhood and try to remember what they were like. Then you remember what happened to them. You think, "Things are probably better now than they were before anyway."
