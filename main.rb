@@ -23,23 +23,21 @@ module Utilities
   end
 
   def format_for_screen(message)
-    # given a message, break it up into lines of no more than 70 characters
-    #message = "It's a dreary day, as you set out onto the path the old man pointed to. The setting sun's light is just enough for you to catch a sight of a wandering cat in the distance."
-
-    # TODO: Need to preserve paragraph structure
-
-    array = message.split
-    result = []
-    temp_result = []
-
-    loop do
-      if temp_result.join(' ').size <= 55 && !array.empty?
-        temp_result << array.shift
-        next
-      end
-      result << temp_result
+    message.split("\n").map do |line|
       temp_result = []
-      return result if array.empty?
+      line_array = line.split
+      result = []
+
+      line_array.each do |word|
+        if temp_result.join(' ').size <= 55 && !line_array.empty?
+          temp_result << word
+          next
+        end
+        result << temp_result
+        temp_result = []
+      end
+
+      result.map { |section| section.join(' ') }
     end
   end
 end
@@ -119,7 +117,7 @@ class MainGame
     loop do
       clear_screen
       puts "Room: #{current_room.name.split('_').map(&:capitalize).join(' ')}\n\n"
-      puts format_for_screen(current_room.description).map { |section| section.join(' ')}
+      puts format_for_screen(current_room.description).map { |line| line.empty? ? "\n" : line }
       room_list = current_room.adjacent_rooms.map do |room|
         "\"#{room}\""
       end
