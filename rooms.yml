@@ -9,6 +9,13 @@ town_square:
 
     Should you follow his gaze and head out towards the town gates on your quest? Or, maybe it's better to simply go home?
 
+home:
+  adjacent_rooms:
+  description: |
+    Unsure of whether you're ready for a quest, you go back to your home and fall down on your bed. You check your mobile phone and notice you have multiple notifications waiting for you.
+
+    One by one, you read your notifications. You get distracted by various links to articles and memes. When you look up next, it's dark outside and time for bed. Your opportunity for adventure has passed.
+
 town_gates:
   adjacent_rooms: continue_on_the_path cat_cafe
   description: |
@@ -62,6 +69,7 @@ stand_and_fight:
 
 continue_fight:
   adjacent_rooms: reflection
+  item: fish tooth
   description: |
     The fish takes a last jump before bearing down on you. It's going for your face. You swing your weapon and miss the fish. The collision knocks you down with some serious cuts on your head and neck. The fish flops around on the ground next to you.
 
@@ -77,6 +85,73 @@ call_for_help:
     The person on the other path is gone.
 
 reflection:
-  adjacent_rooms: onward
+  adjacent_rooms: crossing_the_river go_back
   description: |
     You attempt to look inward, instead of outward at the repulsive landscape. You recall someone from your childhood and try to remember what they were like. Then you remember what happened to them. You think, "Things are probably better now than they were before anyway."
+
+go_back:
+  adjacent_rooms: 
+  description: |
+    You might want to go back, but it's too late. You can't. This is a one-way trip until you've reached the end. Can you reach the end?
+
+    Doing some quick DuckDuckGo searches yields nothing helpful. Nobody is talking about this question on Facebook or TikTok. All that's left to do is press on.
+
+crossing_the_river: 
+  adjacent_rooms: razed_forest find_food
+  description: |
+    As you cross the river, you look closer at the water and see what look like faces and human body parts. You cross carefully, fearing to accidentally step on a lifeless face or deteriorating body. Odd as it may be, you also start to feel hungry.
+
+    Your mobile phone doesn't get signal here, so you can't order food. Maybe you should just press on to the razed lands ahead.
+
+find_food:
+  adjacent_rooms: razed_forest
+  item: food
+  description: |
+    You feel a bit starved, so you use your weapon to stab a rat-like creature swimming in the water. When your weapon pierces it's flesh, it screams like a newborn child, but you now have a nice meal to eat. It tastes good.
+
+razed_forest: 
+  adjacent_rooms: dried_marsh
+  description: |
+    You make it across the river and feel glad you escaped the misery of that place. You wonder what happend to those victims. Will that be your grave one day?
+    
+    The landscape here is barren and looks like it was covered in flames at some point in the past. It seems peaceful, yet scarred.
+
+dried_marsh: 
+  adjacent_rooms: broken_ground
+  description: |
+    This small patch of land looks like it once was home to many swamp flora and fauna. Now simply dry earth with a few telltale signs of what used to be.
+
+broken_ground: 
+  adjacent_rooms: avian_guide
+  description: |
+    As you trudge forward, you spy seemingly random blotches and patchs of moss and discoloration. You see a stiff oak tree in the distance with a gash horizontally across its bark, looking a bit like a mouth, gasping for air as if it was dying.
+
+avian_guide: 
+  adjacent_rooms: mountains
+  description: |
+    Blank
+
+mountains: 
+  adjacent_rooms: realization
+  description: |
+    Blank
+
+realization:
+  adjacent_rooms: the_kill_order
+  description: |
+    Blank
+
+the_kill_order:
+  adjacent_rooms: the_tower
+  description: |
+    Blank
+
+the_tower:
+  adjacent_rooms: lost_adventurers
+  description: |
+    Blank
+
+lost_adventurers:
+  adjacent_rooms:
+  description: |
+    Blank

@@ -10,18 +10,6 @@ module Utilities
     system('clear') || system('cls')
   end
 
-  # :reek:DuplicateMethodCall
-  def joinor(array, sep = ', ', word = 'or')
-    if array.size >= 3
-      "#{array[0..-2].join(sep)}#{sep}#{word}" \
-      " #{array.last}"
-    elsif array.size == 2
-      "#{array.first} #{word} #{array.last}"
-    else
-      array.first.to_s
-    end
-  end
-
   def format_for_screen(message)
     message.split("\n").map do |line|
       temp_result = []
@@ -47,20 +35,37 @@ end
 class Room
   include Utilities
 
-  attr_reader :name, :description, :exits, :adjacent_rooms
+  attr_reader :name, :description, :exits, :adjacent_rooms, :item
 
-  def initialize(name, description, adjacent_rooms)
+  def initialize(name, description, adjacent_rooms, item=nil)
     @name = name
     @description = description
-    @adjacent_rooms = adjacent_rooms.split.map { |room| room.gsub('_', ' ')}
+    @adjacent_rooms = adjacent_rooms&.split&.map { |room| room&.gsub('_', ' ')}
+    @item = item
+  end
+
+  def display_name
+    puts "Room: #{name.split('_').map(&:capitalize).join(' ')}\n\n"
+  end
+
+  def display_description
+    puts format_for_screen(description)
+  end
+
+  def display_adjacent_rooms
+    room_list = adjacent_rooms&.map { |room| "\"#{room}\"" }&.join(' | ')
+    puts "\nAvailable actions: #{room_list}"
   end
 end
 
 class Player
   include Utilities
 
+  attr_reader :inventory
+
   def initialize
     @score = 0
+    @inventory = []
   end
 
   def increment_score
@@ -69,6 +74,14 @@ class Player
 
   def reset_score
     @score = 0
+  end
+
+  def add_to_inventory(item)
+    @inventory << item
+  end
+
+  def display_inventory
+    puts "Inventory: #{inventory.join(', ')}"
   end
 
   def retrieve_move(adjacent_rooms)
@@ -107,7 +120,8 @@ class MainGame
     room_data.map do |room|
       Room.new(room.first,
                room.last["description"],
-               room.last["adjacent_rooms"])
+               room.last["adjacent_rooms"],
+               room.last["item"])
     end
   end
 
@@ -115,18 +129,36 @@ class MainGame
     @current_room = rooms.find { |room| room.name == name.gsub(' ', '_') }
   end
 
+  def check_for_item
+    player.add_to_inventory(current_room.item) unless current_room.item == nil
+  end
+
   def play
     loop do
       clear_screen
-      puts "Room: #{current_room.name.split('_').map(&:capitalize).join(' ')}\n\n"
-      puts format_for_screen(current_room.description)#.map { |line| line.empty? ? "\n" : line }
-      room_list = current_room.adjacent_rooms.map do |room|
-        "\"#{room}\""
+      current_room.display_name
+      current_room.display_description
+      
+      if ['home', 'lost_adventurers'].include?(current_room.name)
+        puts "\nPress enter to continue..."
+        break gets
       end
-      puts "\nAvailable actions: #{room_list.join(' | ')}"
-      direction = player.retrieve_move(current_room.adjacent_rooms)
-      set_current_room(direction)
+
+      check_for_item
+
+      current_room.display_adjacent_rooms
+      player.display_inventory
+      choose_room = player.retrieve_move(current_room.adjacent_rooms)
+      set_current_room(choose_room)
     end
+
+    clear_screen
+    puts "======="
+    puts "THE END"
+    puts "=======\n\n"
+    puts "Thank you for playing!\n\n"
+    puts "This game is based on the poem:"
+    puts "'Childe Roland to the Dark Tower Came' by Robert Browning\n\n"
   end
 end
 
