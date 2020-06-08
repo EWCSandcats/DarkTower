@@ -17,7 +17,7 @@ home:
     One by one, you read your notifications. You get distracted by various links to articles and memes. When you look up next, it's dark outside and time for bed. Your opportunity for adventure has passed.
 
 town_gates:
-  adjacent_rooms: continue_on_the_path cat_cafe
+  adjacent_rooms: cat_cafe continue_on_the_path
   description: |
     It's a dreary day, as you set out onto the path the old man pointed to. The setting sun's light is just enough for you to catch a sight of a wandering cat in the distance.
     
@@ -25,8 +25,13 @@ town_gates:
 
 cat_cafe:
   adjacent_rooms: town_gates
+  item: cat
   description: |
     Lots of cats! Everywhere. On tables, chairs, cat trees, and all over the floor. You hang out with some of the cats, petting and stroking them.
+
+    As you walk out of the cafe, a kitten jumps into your bag. Looking at the kitten, it seems like its begging you to remain silent as you walk out so it can escape. It's on an adventure, you think to yourself.
+    
+    So, you walk out with the cat in your bag. Two like-minded creatures on an adventure.
 
 continue_on_the_path:
   adjacent_rooms: desolate_path crushed_plants
@@ -39,7 +44,7 @@ crushed_plants:
     You see some plants that looked a bit smushed, as if something large had trampled them. Upon closer examination, they seem very roughed up and it look as if something had smashed them with malicious intent.
 
 desolate_path:
-  adjacent_rooms: further_on_the_path dead_tree
+  adjacent_rooms: dead_tree further_on_the_path
   description: |
     You decide to head onwards. It is difficult to remember which direction you are headed in, yet you hold together, for now. You have never seen such desolation before, for you see no plants, other than the smushed ones earlier, no life, not even bugs. Even a small patch of green living grass would have been a mercy. Yet there was none to be had.
 
@@ -61,7 +66,7 @@ small_river:
     Out of the river jumps a large fish. At first, it appears to be jumping for its own pleasure. But soon, you realize that its jumping towards you ... quickly.
 
 stand_and_fight:
-  adjacent_rooms: call_for_help continue_fight
+  adjacent_rooms: continue_fight call_for_help
   description: |
     As the fish gets closer, you see its immense jaws and sharp teeth. Is it a fish? It could be some type of shark. You ready your weapon and shield, bracing yourself for the impact with the fish.
 
@@ -69,14 +74,22 @@ stand_and_fight:
 
 continue_fight:
   adjacent_rooms: reflection
-  item: fish tooth
+  item:
   description: |
     The fish takes a last jump before bearing down on you. It's going for your face. You swing your weapon and miss the fish. The collision knocks you down with some serious cuts on your head and neck. The fish flops around on the ground next to you.
 
     Instead of killing the fish with your weapon, you push the fish back into the water with your hands, hoping it will just go away.
 
+fight_with_cat:
+  adjacent_rooms: reflection
+  item: fish tooth
+  description: |
+    As the fish gets closer, you ready your weapon, but your cat wakes up from its nap, yawns, and then jumps out of your bag. As it stretches and the fish is just about to hit you, your cat jumps at the fish, killing it easily with a few swipes of its claws and bites from its teeth.
+
+    In the end, your cat cozies up to you, dropping something at your feet. You pick up the object that the cat dropped, petting your cat, thankful you went to that cat cafe before you left.
+
 call_for_help:
-  adjacent_rooms: small_river
+  adjacent_rooms: reflection
   description: |
     Turning to look at the person on the other path, you yell for help. "Help," you yell, "this fish is attacking me!" The person on the other path seems noticeably jarred by your intrusion. They cup their hand to their ear as if to signal that they can't hear you.
 
@@ -90,14 +103,14 @@ reflection:
     You attempt to look inward, instead of outward at the repulsive landscape. You recall someone from your childhood and try to remember what they were like. Then you remember what happened to them. You think, "Things are probably better now than they were before anyway."
 
 go_back:
-  adjacent_rooms: 
+  adjacent_rooms: reflection
   description: |
     You might want to go back, but it's too late. You can't. This is a one-way trip until you've reached the end. Can you reach the end?
 
     Doing some quick DuckDuckGo searches yields nothing helpful. Nobody is talking about this question on Facebook or TikTok. All that's left to do is press on.
 
 crossing_the_river: 
-  adjacent_rooms: razed_forest find_food
+  adjacent_rooms: find_food razed_forest
   description: |
     As you cross the river, you look closer at the water and see what look like faces and human body parts. You cross carefully, fearing to accidentally step on a lifeless face or deteriorating body. Odd as it may be, you also start to feel hungry.
 
@@ -110,48 +123,95 @@ find_food:
     You feel a bit starved, so you use your weapon to stab a rat-like creature swimming in the water. When your weapon pierces it's flesh, it screams like a newborn child, but you now have a nice meal to eat. It tastes good.
 
 razed_forest: 
-  adjacent_rooms: dried_marsh
+  adjacent_rooms: dried_marsh sunny_field
   description: |
-    You make it across the river and feel glad you escaped the misery of that place. You wonder what happend to those victims. Will that be your grave one day?
+    You make it across the river and feel glad you escaped the misery of that place. You wonder what happened to those victims. Will that be your grave one day?
     
     The landscape here is barren and looks like it was covered in flames at some point in the past. It seems peaceful, yet scarred.
 
-dried_marsh: 
-  adjacent_rooms: broken_ground
+    You also see what appears to be a sunny field amidst the dreariness. You wipe your eyes to make sure you're actually seeing this field. And yes, it's really there as far as you can tell.
+
+sunny_field:
+  adjacent_rooms: razed_forest
   description: |
-    This small patch of land looks like it once was home to many swamp flora and fauna. Now simply dry earth with a few telltale signs of what used to be.
+    You walk towards the field. It seems to be further away than it appears. You continue walking and walking and walking. For some reason, the more you walk, the further away the field seems.
+    
+    After walking for some time longer, you decide to stop and turn around.
+
+dried_marsh: 
+  adjacent_rooms: check_messages broken_ground
+  description: |
+    This small patch of land looks like it once was home to many swamp flora and fauna. Now simply dry earth with a few telltale signs of what used to be. You hear a familiar 'ding' coming from your pocket.
+
+check_messages:
+  adjacent_rooms:
+  description: |
+    Suddenly, out of nowhere, you get a notification tone from your mobile device. You turn on your mobile device and click on the Facebook icon to read the notification. Wow, a lot has been happening since you last checked 37 minutes ago.
+
+    The notification was for a message demanding that you defend your ideas presented in one of your posts. Typing the reply out on this mobile device will not be sufficient, you soon realize as you try to reply. You need your laptop, which you left at home.
+
+    This quest never really mattered to you since you discovered it from some random old man. So, you decide to quit and go home. After all, being right on social media will very likely have more immediate impact on your life than whatever lies at the end of this quest.
 
 broken_ground: 
-  adjacent_rooms: avian_guide
+  adjacent_rooms: avian_guide mouse_guide
   description: |
     As you trudge forward, you spy seemingly random blotches and patchs of moss and discoloration. You see a stiff oak tree in the distance with a gash horizontally across its bark, looking a bit like a mouth, gasping for air as if it was dying.
+
+    You feel like you have been walking for ever. You suppose there is nothing to do other than to continue on your quest. As you think these thoughts, a huge black bird, its appearance akin to a dragon, flies right above you in the direction you are heading.
+
+    You also notice a tiny mouse at the base of a nearby bush.
+
+mouse_guide:
+  adjacent_rooms: broken_ground
+  description: |
+    Looking closer at the mouse, you notice it has strange markings. Could this be the mouse leader you've always been waiting for? Did you finally find your queen, the queen of everything? You follow the mouse with all of your heart and soul.
 
 avian_guide: 
   adjacent_rooms: mountains
   description: |
-    Blank
+    You continue to go the same direction as the black bird flying above. Your cat meows and growls in your bag, apparently trying to get at the bird. Somehow, you know that you and this bird share the same fate. You're both on the same adventure. Neither of you knows what that is, but you both know you have to go this way.
 
 mountains: 
   adjacent_rooms: realization
   description: |
-    Blank
+    You look up and are suddenly aware: the plains have been replaced by mountains! You are suprised that you have come this far. You wonder how long it would take for you to get to the mountain range.
 
-realization:
-  adjacent_rooms: the_kill_order
-  description: |
-    Blank
-
-the_kill_order:
-  adjacent_rooms: the_tower
-  description: |
-    Blank
-
-the_tower:
-  adjacent_rooms: lost_adventurers
-  description: |
-    Blank
-
-lost_adventurers:
+too_hungry:
   adjacent_rooms:
   description: |
-    Blank
+    You rub your belly as it growls from hunger. There's no food around here. It's too desolate. Anything you find here will be deadly.
+
+    The hunger is too strong and you decide to go home, abandoning your quest.
+
+realization:
+  adjacent_rooms: the_tower
+  description: |
+    You suddenly feel as if this journey is a bad dream. You feel as if you will not get much farther going this way. "Hm.. maybe I should give up--" All at once, you realize. This is the place! Those two mountains on the right looking like two fighting oxen, and on the left, the tall bald mountain. You curse yourself for having not seen it faster.
+
+the_tower:
+  adjacent_rooms: look_at_the_hills
+  description: |
+    You remember what was between those hills. What else? The Tower. The round, short turrets on top were unmistakable. It was made of a brown material, almost like brick. There was no other tower like this one.
+
+look_at_the_hills:
+  adjacent_rooms: lost_adventurers
+  description: |
+   The mountains nearby look like they are huge giants judging or supervising a great game or duel between you and the horrors of the land. They seem to call, "Kill it and end its misery!" You snap back to reality for a moment, and you hear a loud noise, increasing in volume.
+
+lost_adventurers:
+  adjacent_rooms: the_end
+  description: |
+    The noise is almost unbearable. Names, you realize, the noises were names of past people who had once gone on this same journey. Your peers and ancestors. You find solace in this moment of pride as you think of the bravery and boldness your peers and ancestors, but who will know?
+
+    You blow your slug-horn. You have succeeded in your quest to reach the dark tower.
+
+    "Childe Roland to the Dark Tower Came" you yell, and enter the tower...
+
+the_end:
+  adjacent_rooms:
+  description: |
+    ======
+    WINNER
+    ======
+
+    You have finished your quest and won the game!

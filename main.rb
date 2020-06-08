@@ -3,7 +3,7 @@
 # Then type `ruby main.rb` and press enter
 
 require 'yaml'
-require 'pry'
+#require 'pry'
 
 module Utilities
   def clear_screen
@@ -84,12 +84,23 @@ class Player
     puts "Inventory: #{inventory.join(', ')}"
   end
 
+  def alternate_route(input)
+    return "fight_with_cat" if input == "continue fight" && in_inventory?("cat")
+    return "too_hungry" if input == "realization" && !in_inventory?("food")
+  end
+
+  def in_inventory?(item)
+    inventory.include?(item)
+  end
+
   def retrieve_move(adjacent_rooms)
     puts "\nWhere would you like to go?"
     print ">> "
 
     loop do
       input = gets.chomp
+      alternate = alternate_route(input)
+      return alternate if alternate
       return input if valid_move?(input, adjacent_rooms)
 
       puts "Sorry, you cannot move in that direction."
@@ -139,7 +150,7 @@ class MainGame
       current_room.display_name
       current_room.display_description
       
-      if ['home', 'lost_adventurers'].include?(current_room.name)
+      if ['home', 'check_messages', 'too_hungry', 'the_end'].include?(current_room.name)
         puts "\nPress enter to continue..."
         break gets
       end
